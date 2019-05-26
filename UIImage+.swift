@@ -42,7 +42,6 @@ public extension UIImage {
         return imageData
     }
 
-
     /// 通过图片创建 NSTextAttachment
     ///
     /// - Parameters:
@@ -63,5 +62,4 @@ public extension UIImage {
         let imageString = NSAttributedString(attachment: imageAttachment)
         return imageString
     }
-    
 }
