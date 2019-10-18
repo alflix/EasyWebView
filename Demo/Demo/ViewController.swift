@@ -29,6 +29,14 @@ extension ViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: WebViewCell.self, for: indexPath)
+//        if let filepath = Bundle.main.path(forResource: "example", ofType: "html") {
+//            do {
+//                let contents = try String(contentsOfFile: filepath)
+//                cell.setupHtmlString(contents, appendingHtmlFormat: true, delegate: self)
+//            } catch {
+//
+//            }
+//        }
         cell.setupURLString("https://junya.dev.ganguomob.com/admin/rich/#goods=7939326983", delegate: self, isAddObservers: false)
 //        cell.setupURLString("https://jpeshop.dev.ganguomob.com/embedded/product_detail/247", delegate: self)
         return cell
