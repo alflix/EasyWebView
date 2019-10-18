@@ -9,17 +9,6 @@
 import UIKit
 import WebKit
 
-public struct WebViewConfig {
-    /// 弹窗确定按钮的文字
-    public static var alertConfirmTitle: String = "done"
-    /// 弹窗取消按钮的文字
-    public static var alertCancelTitle: String = "cancel"
-    /// 进度条完成部分进度的颜色(默认蓝)
-    public static var progressTintColor: UIColor = UIColor.blue
-    /// 进度条总进度的颜色
-    public static var progressTrackTintColor: UIColor = .white
-}
-
 public typealias BoolBlock = (_ boolen: Bool) -> Void
 
 open class WebViewController: UIViewController {
@@ -172,7 +161,7 @@ private extension WebViewController {
 }
 
 // MARK: - Action
-private extension WebViewController {
+public extension WebViewController {
     /// 返回上一页
     ///
     /// - Parameter completion: 包含是否可以返回上一页的 Bool 值的回调，用于执行 goBack 后根据该状态更新相关按钮的 enable

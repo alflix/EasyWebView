@@ -69,7 +69,7 @@ public extension WebViewCell {
             <head>
             <meta name="viewport", content="width=\(bounds.width), initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no\">
             <style>
-            body { font-size: 100%; text-align: justify; margin: 0; padding: 0;}
+            body { font-size: 100%; text-align: justify;}
             table { width: 100% !important;}
             img { max-width:100%; width: 100%; height:auto; padding:0; border:0; margin:0; vertical-align:bottom;}
             </style>
@@ -87,7 +87,7 @@ public extension WebViewCell {
         let basePath = Bundle.main.bundlePath
         let baseURL = NSURL.fileURL(withPath: basePath)
         DispatchQueue.main.async {
-            self.webView.loadHTMLString(htmlString, baseURL: baseURL)
+            self.webView.loadHTMLString(self.htmlString!, baseURL: baseURL)
         }
         if isAddObservers {
             addObservers()
@@ -98,7 +98,7 @@ public extension WebViewCell {
     /// 加载 url
     /// - Parameter urlString: url 字符串
     /// - Parameter delegate: 代理，监听网页高度
-    /// - Parameter isAddObservers: 是否监听 scrollView.contentSize
+    /// - Parameter isAddObservers: 是否监听 scrollView.contentSize （默认通过 document.body.scrollHeight 获取可能不对，例如 url 是异步调 API 再渲染的）
     func setupURLString(_ urlString: String?,
                         delegate: WebViewCellDelegate?,
                         isAddObservers: Bool = false) {
