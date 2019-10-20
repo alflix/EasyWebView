@@ -14,7 +14,7 @@ public protocol WebViewCellDelegate: NSObjectProtocol {
 }
 
 public class WebViewCell: UITableViewCell {
-    private lazy var webView: WKWebView = {
+    public lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.scrollView.isScrollEnabled = false
         webView.isUserInteractionEnabled = false

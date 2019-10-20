@@ -9,8 +9,6 @@
 import UIKit
 import WebKit
 
-public typealias BoolBlock = (_ boolen: Bool) -> Void
-
 open class WebViewController: UIViewController {
     /// 加载 html 字符串
     /// - Parameter htmlString: html 字符串

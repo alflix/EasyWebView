@@ -16,6 +16,7 @@
 		523960CB2359B38100D1758C /* WebViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523960C92359B38100D1758C /* WebViewCell.swift */; };
 		523960CD2359C10700D1758C /* example.html in Resources */ = {isa = PBXBuildFile; fileRef = 523960CC2359C10700D1758C /* example.html */; };
 		523960CF2359D9E900D1758C /* WebViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523960CE2359D9E900D1758C /* WebViewConfig.swift */; };
+		52F695B5235B1B6D00987B02 /* WKWebView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F695B4235B1B6D00987B02 /* WKWebView+.swift */; };
 		6AE55BD82B17E80F5D34CCD7 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F33725A8DB54E01249AF6D6C /* Pods_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		523960C92359B38100D1758C /* WebViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewCell.swift; sourceTree = "<group>"; };
 		523960CC2359C10700D1758C /* example.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = example.html; sourceTree = "<group>"; };
 		523960CE2359D9E900D1758C /* WebViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewConfig.swift; sourceTree = "<group>"; };
+		52F695B4235B1B6D00987B02 /* WKWebView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+.swift"; sourceTree = "<group>"; };
 		D54361C755514BBAE1B9D54D /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		D6DE19B8AED172C0429F6A09 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		F33725A8DB54E01249AF6D6C /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,9 +95,10 @@
 		523960C72359B38100D1758C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				523960CE2359D9E900D1758C /* WebViewConfig.swift */,
 				523960C82359B38100D1758C /* WebViewController.swift */,
 				523960C92359B38100D1758C /* WebViewCell.swift */,
-				523960CE2359D9E900D1758C /* WebViewConfig.swift */,
+				52F695B4235B1B6D00987B02 /* WKWebView+.swift */,
 			);
 			name = Source;
 			path = ../../Source;
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				523960CB2359B38100D1758C /* WebViewCell.swift in Sources */,
+				52F695B5235B1B6D00987B02 /* WKWebView+.swift in Sources */,
 				5231174C224220BB009DA11E /* ViewController.swift in Sources */,
 				5231174A224220BB009DA11E /* AppDelegate.swift in Sources */,
 				523960CA2359B38100D1758C /* WebViewController.swift in Sources */,

@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import WebKit
+
+public typealias BoolBlock = (_ boolen: Bool) -> Void
+public typealias ReceiveScriptMessageBlock = (_ userContentController: WKUserContentController, _ message: WKScriptMessage) -> Void
 
 public struct WebViewConfig {
     /// 弹窗确定按钮的文字
@@ -18,4 +22,3 @@ public struct WebViewConfig {
     /// 进度条总进度的颜色
     public static var progressTrackTintColor: UIColor = .white
 }
-

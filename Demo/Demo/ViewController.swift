@@ -37,8 +37,12 @@ extension ViewController {
 //
 //            }
 //        }
-        cell.setupURLString("https://junya.dev.ganguomob.com/admin/rich/#goods=7939326983", delegate: self, isAddObservers: false)
+//        cell.setupURLString("https://junya.dev.ganguomob.com/admin/deal/?app=true", delegate: self, isAddObservers: true)
 //        cell.setupURLString("https://jpeshop.dev.ganguomob.com/embedded/product_detail/247", delegate: self)
+        cell.setupURLString("https://junya.dev.ganguomob.com/admin/deal/?app=true", delegate: self, isAddObservers: true)
+//        cell.webView.addScriptMessageHandler(scriptNames: ["agreeRule"]) { (_, _) in
+//            print("😄")
+//        }
         return cell
     }
 

@@ -57,3 +57,42 @@ public func SYSTEM_VERSION_LESS_THAN(version: String) -> Bool {
 public func SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(version: String) -> Bool {
     return UIDevice.current.systemVersion.compare(version, options: .numeric) != .orderedDescending
 }
+
+public extension NSObject {
+    /// Sets an associated value for a given object using a weak reference to the associated object.
+    /// **Note**: the `key` underlying type must be String.
+    func associate(assignObject object: Any?, forKey key: UnsafeRawPointer) {
+        let strKey: String = convertUnsafePointerToSwiftType(key)
+        willChangeValue(forKey: strKey)
+        objc_setAssociatedObject(self, key, object, .OBJC_ASSOCIATION_ASSIGN)
+        didChangeValue(forKey: strKey)
+    }
+
+    /// Sets an associated value for a given object using a strong reference to the associated object.
+    /// **Note**: the `key` underlying type must be String.
+    func associate(retainObject object: Any?, forKey key: UnsafeRawPointer) {
+        let strKey: String = convertUnsafePointerToSwiftType(key)
+        willChangeValue(forKey: strKey)
+        objc_setAssociatedObject(self, key, object, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        didChangeValue(forKey: strKey)
+    }
+
+    /// Sets an associated value for a given object using a copied reference to the associated object.
+    /// **Note**: the `key` underlying type must be String.
+    func associate(copyObject object: Any?, forKey key: UnsafeRawPointer) {
+        let strKey: String = convertUnsafePointerToSwiftType(key)
+        willChangeValue(forKey: strKey)
+        objc_setAssociatedObject(self, key, object, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+        didChangeValue(forKey: strKey)
+    }
+
+    /// Returns the value associated with a given object for a given key.
+    /// **Note**: the `key` underlying type must be String.
+    func associatedObject(forKey key: UnsafeRawPointer) -> Any? {
+        return objc_getAssociatedObject(self, key)
+    }
+}
+
+public func convertUnsafePointerToSwiftType<T>(_ value: UnsafeRawPointer) -> T {
+    return value.assumingMemoryBound(to: T.self).pointee
+}
