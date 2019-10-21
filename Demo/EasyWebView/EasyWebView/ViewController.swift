@@ -1,13 +1,12 @@
 //
 //  ViewController.swift
-//  Demo
+//  EasyWebView
 //
-//  Created by John on 2019/3/20.
-//  Copyright © 2019 Ganguo. All rights reserved.
+//  Created by John on 2019/10/21.
+//  Copyright © 2019 John. All rights reserved.
 //
 
 import UIKit
-import Reusable
 
 class ViewController: UITableViewController {
     private var webCellHeight: CGFloat = 300
@@ -29,20 +28,10 @@ extension ViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: WebViewCell.self, for: indexPath)
-//        if let filepath = Bundle.main.path(forResource: "example", ofType: "html") {
-//            do {
-//                let contents = try String(contentsOfFile: filepath)
-//                cell.setupHtmlString(contents, appendingHtmlFormat: true, delegate: self)
-//            } catch {
-//
-//            }
-//        }
-//        cell.setupURLString("https://junya.dev.ganguomob.com/admin/deal/?app=true", delegate: self, isAddObservers: true)
-//        cell.setupURLString("https://jpeshop.dev.ganguomob.com/embedded/product_detail/247", delegate: self)
-        cell.setupURLString("https://junya.dev.ganguomob.com/admin/deal/?app=true", delegate: self, isAddObservers: true)
-//        cell.webView.addScriptMessageHandler(scriptNames: ["agreeRule"]) { (_, _) in
-//            print("😄")
-//        }
+        cell.setupURLString("http://192.168.199.127:8081/?id=2", delegate: self, isAddObservers: true)
+        cell.webView.addScriptMessageHandler(scriptNames: ["openProductDetail"]) { (_, message) in
+            print("😄: \(message.body)")
+        }
         return cell
     }
 
@@ -66,3 +55,4 @@ extension UITableView {
         return cell
     }
 }
+
