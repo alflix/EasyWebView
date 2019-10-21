@@ -7,20 +7,20 @@
 
 ## Written in Swift 5.1
 
-EasyWebView enables application to use WKWebView easily, in UIViewController or UITableViewCell
+EasyWebView enables application to use WKWebView easily, in UIViewController or UITableViewCell.
 
 ## Features
 
-- one line code to user WKWebView.
+- one line code to use WKWebView by loading url or html string.
 - smart and easy to adjust height of WebView in UITableViewCell.
-- easy and safe to user ScriptMessageHandler 
-- support common WKWebView feature
+- easy and safe to use ScriptMessageHandler.
+- support common WKWebView feature.
 
 ## Installation 
 
 ### Requirements 
 
-- Swift 4.2 ( Swift 4.2 -> use 'version 1.8.3' )
+- Swift 4.2 ( Swift 4.2 -> use 'version 1.0.0' )
 - iOS 8.0 (for use WKWebView)
 
 ### Cocoapods
@@ -43,16 +43,6 @@ pod "EasyWebView"
 ```
 
 ## Usage 
-
-**WebViewController**
-
-```swift 
-class ViewController: UIViewController {
-    func pushToWebViewController() {
-        pushToWebByLoadingURL("google.com", title: "Google")
-    }
-}
-```
 
 **Use WebViewController**
 
@@ -107,9 +97,7 @@ extension ViewController {
 
 ## Author
 
-Does your organization or project use EasyWebView? Please let me know by email.
-
-john, jieyuanz24k@gmail.com
+Does your organization or project use EasyWebView? Please let me know by email. John, jieyuanz24k@gmail.com
 
 ## License 
 
