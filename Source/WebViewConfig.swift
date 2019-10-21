@@ -1,9 +1,9 @@
 //
 //  WebViewConfig.swift
-//  Demo
+//  EasyWebView
 //
 //  Created by John on 2019/10/18.
-//  Copyright © 2019 Ganguo. All rights reserved.
+//  Copyright © 2019 John. All rights reserved.
 //
 
 import UIKit
@@ -14,9 +14,9 @@ public typealias ReceiveScriptMessageBlock = (_ userContentController: WKUserCon
 
 public struct WebViewConfig {
     /// 弹窗确定按钮的文字
-    public static var alertConfirmTitle: String = "done"
+    public static var alertConfirmTitle: String = "Done"
     /// 弹窗取消按钮的文字
-    public static var alertCancelTitle: String = "cancel"
+    public static var alertCancelTitle: String = "Cancel"
     /// 进度条完成部分进度的颜色(默认蓝)
     public static var progressTintColor: UIColor = UIColor.blue
     /// 进度条总进度的颜色

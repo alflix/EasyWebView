@@ -1,9 +1,9 @@
 //
 //  WebViewCell.swift
-//  GGUI
+//  EasyWebView
 //
 //  Created by John on 10/14/18.
-//  Copyright © 2019 Ganguo. All rights reserved.
+//  Copyright © 2019 John. All rights reserved.
 //
 
 import UIKit
@@ -17,7 +17,6 @@ public class WebViewCell: UITableViewCell {
     public lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.scrollView.isScrollEnabled = false
-        webView.isUserInteractionEnabled = false
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.showsHorizontalScrollIndicator = false
         if #available(iOS 11.0, *) {
@@ -30,7 +29,7 @@ public class WebViewCell: UITableViewCell {
     private var webViewHeight: CGFloat = 0
     private var observation: NSKeyValueObservation?
     private var hasLoad: Bool = false
-    weak var delegate: WebViewCellDelegate?
+    private weak var delegate: WebViewCellDelegate?
     private var htmlString: String?
     private var urlString: String?
 
@@ -120,7 +119,7 @@ public extension UITableView {
     /// 处理 ios10 webview 白屏 scrollViewDidScroll 中调用
     /// https://stackoverflow.com/questions/39549103/wkwebview-not-rendering-correctly-in-ios-10
     func fixWebViewCellRenderingWhite() {
-        guard SYSTEM_VERSION_LESS_THAN(version: "11") else { return }
+        if #available(iOS 11.0, *) { return }
         for cell in visibleCells where cell is WebViewCell {
             if let webView = cell.contentView.recursiveFindSubview(of: "WKWebView") {
                 webView.setNeedsLayout()
@@ -154,10 +153,8 @@ private extension WebViewCell {
 
 extension WebViewCell: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        // 偶现这个方法不调用 (可能是因为设置 delegate 在 设置 url 之后，继续观察)
         webView.evaluateJavaScript("document.body.scrollHeight") { [weak self] (result, _) in
             guard let strongSelf = self, let result = result as? Double else { return }
-            print("😄 body.scrollHeight: \(result)")
             strongSelf.contentSizeChange(height: CGFloat(result))
         }
     }

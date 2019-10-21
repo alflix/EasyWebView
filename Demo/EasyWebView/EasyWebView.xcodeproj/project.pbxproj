@@ -11,12 +11,12 @@
 		529C39CC235D8D4D00D2E645 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C39CB235D8D4D00D2E645 /* ViewController.swift */; };
 		529C39D1235D8D4E00D2E645 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 529C39D0235D8D4E00D2E645 /* Assets.xcassets */; };
 		529C39D4235D8D4E00D2E645 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529C39D2235D8D4E00D2E645 /* LaunchScreen.storyboard */; };
-		529C39E1235D8D9100D2E645 /* WebViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C39DC235D8D9100D2E645 /* WebViewConfig.swift */; };
-		529C39E2235D8D9100D2E645 /* WKWebView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C39DD235D8D9100D2E645 /* WKWebView+.swift */; };
-		529C39E3235D8D9100D2E645 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C39DE235D8D9100D2E645 /* Extensions.swift */; };
-		529C39E4235D8D9100D2E645 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C39DF235D8D9100D2E645 /* WebViewController.swift */; };
-		529C39E5235D8D9100D2E645 /* WebViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C39E0235D8D9100D2E645 /* WebViewCell.swift */; };
 		529C39E7235D8EE700D2E645 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529C39E6235D8EE700D2E645 /* Main.storyboard */; };
+		529C39EE235D983E00D2E645 /* WebViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C39E9235D983D00D2E645 /* WebViewConfig.swift */; };
+		529C39EF235D983E00D2E645 /* WKWebView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C39EA235D983D00D2E645 /* WKWebView+.swift */; };
+		529C39F0235D983E00D2E645 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C39EB235D983D00D2E645 /* Extensions.swift */; };
+		529C39F1235D983E00D2E645 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C39EC235D983D00D2E645 /* WebViewController.swift */; };
+		529C39F2235D983E00D2E645 /* WebViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529C39ED235D983D00D2E645 /* WebViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,12 +26,12 @@
 		529C39D0235D8D4E00D2E645 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		529C39D3235D8D4E00D2E645 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		529C39D5235D8D4E00D2E645 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		529C39DC235D8D9100D2E645 /* WebViewConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewConfig.swift; sourceTree = "<group>"; };
-		529C39DD235D8D9100D2E645 /* WKWebView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+.swift"; sourceTree = "<group>"; };
-		529C39DE235D8D9100D2E645 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		529C39DF235D8D9100D2E645 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		529C39E0235D8D9100D2E645 /* WebViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewCell.swift; sourceTree = "<group>"; };
 		529C39E6235D8EE700D2E645 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		529C39E9235D983D00D2E645 /* WebViewConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewConfig.swift; sourceTree = "<group>"; };
+		529C39EA235D983D00D2E645 /* WKWebView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+.swift"; sourceTree = "<group>"; };
+		529C39EB235D983D00D2E645 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		529C39EC235D983D00D2E645 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		529C39ED235D983D00D2E645 /* WebViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +48,7 @@
 		529C39BB235D8D4D00D2E645 = {
 			isa = PBXGroup;
 			children = (
-				529C39DB235D8D9100D2E645 /* Source */,
+				529C39E8235D983D00D2E645 /* Source */,
 				529C39C6235D8D4D00D2E645 /* EasyWebView */,
 				529C39C5235D8D4D00D2E645 /* Products */,
 			);
@@ -75,16 +75,17 @@
 			path = EasyWebView;
 			sourceTree = "<group>";
 		};
-		529C39DB235D8D9100D2E645 /* Source */ = {
+		529C39E8235D983D00D2E645 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				529C39DC235D8D9100D2E645 /* WebViewConfig.swift */,
-				529C39DD235D8D9100D2E645 /* WKWebView+.swift */,
-				529C39DE235D8D9100D2E645 /* Extensions.swift */,
-				529C39DF235D8D9100D2E645 /* WebViewController.swift */,
-				529C39E0235D8D9100D2E645 /* WebViewCell.swift */,
+				529C39E9235D983D00D2E645 /* WebViewConfig.swift */,
+				529C39EA235D983D00D2E645 /* WKWebView+.swift */,
+				529C39EB235D983D00D2E645 /* Extensions.swift */,
+				529C39EC235D983D00D2E645 /* WebViewController.swift */,
+				529C39ED235D983D00D2E645 /* WebViewCell.swift */,
 			);
-			path = Source;
+			name = Source;
+			path = ../../Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,13 +159,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				529C39F0235D983E00D2E645 /* Extensions.swift in Sources */,
+				529C39F1235D983E00D2E645 /* WebViewController.swift in Sources */,
+				529C39EE235D983E00D2E645 /* WebViewConfig.swift in Sources */,
+				529C39EF235D983E00D2E645 /* WKWebView+.swift in Sources */,
 				529C39CC235D8D4D00D2E645 /* ViewController.swift in Sources */,
-				529C39E3235D8D9100D2E645 /* Extensions.swift in Sources */,
-				529C39E1235D8D9100D2E645 /* WebViewConfig.swift in Sources */,
+				529C39F2235D983E00D2E645 /* WebViewCell.swift in Sources */,
 				529C39C8235D8D4D00D2E645 /* AppDelegate.swift in Sources */,
-				529C39E4235D8D9100D2E645 /* WebViewController.swift in Sources */,
-				529C39E5235D8D9100D2E645 /* WebViewCell.swift in Sources */,
-				529C39E2235D8D9100D2E645 /* WKWebView+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

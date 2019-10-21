@@ -1,9 +1,9 @@
 //
 //  WKWebView+.swift
-//  Demo
+//  EasyWebView
 //
 //  Created by John on 2019/10/19.
-//  Copyright © 2019 Ganguo. All rights reserved.
+//  Copyright © 2019 John. All rights reserved.
 //
 
 import Foundation
@@ -11,10 +11,6 @@ import WebKit
 
 class WeakScriptMessageDelegate: NSObject, WKScriptMessageHandler {
     weak var scriptDelegate: WKScriptMessageHandler?
-
-    deinit {
-        print("WeakScriptMessageDelegate is deinit")
-    }
 
     init(_ scriptDelegate: WKScriptMessageHandler) {
         self.scriptDelegate = scriptDelegate
@@ -28,10 +24,10 @@ class WeakScriptMessageDelegate: NSObject, WKScriptMessageHandler {
 
 public extension WKWebView {
     fileprivate struct AssociatedKey {
-        static var receiveScriptMessageHandlerWrapper: String = "com.ganguo.receiveScriptMessageHandler"
+        static var receiveScriptMessageHandlerWrapper: String = "com.John.receiveScriptMessageHandler"
     }
 
-    var receiveScriptMessageHandler: ReceiveScriptMessageBlock? {
+    private var receiveScriptMessageHandler: ReceiveScriptMessageBlock? {
         get {
             guard let block = associatedObject(forKey: &AssociatedKey.receiveScriptMessageHandlerWrapper) as? ReceiveScriptMessageBlock else {
                 return nil
@@ -43,7 +39,12 @@ public extension WKWebView {
         }
     }
 
+    /// js 用以下的方法调用 iOS 的函数：
+    /// window.webkit.messageHandlers. {scriptNames}.postMessage(xxx)
+    /// - Parameter scriptNames: 函数名称数组
+    /// - Parameter receiveScriptMessageHandler: 回调
     func addScriptMessageHandler(scriptNames: [String], receiveScriptMessageHandler: ReceiveScriptMessageBlock? = nil) {
+        self.receiveScriptMessageHandler = receiveScriptMessageHandler
         for scriptName in scriptNames {
             configuration.userContentController.removeScriptMessageHandler(forName: scriptName)
             configuration.userContentController.add(WeakScriptMessageDelegate(self), name: scriptName)
