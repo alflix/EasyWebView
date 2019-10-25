@@ -10,13 +10,13 @@ import UIKit
 import WebKit
 
 open class WebViewController: UIViewController {
-    /// 加载 html 字符串
-    /// - Parameter htmlString: html 字符串
-    /// - Parameter appendingHtmlFormat: 是否拼接上 htlm 的基本格式
-    /// - Parameter delegate: 代理，监听网页高度
+    /// loading the html string by append html predefine content
+    /// - Parameter htmlString: html string
+    /// - Parameter appendingHtmlFormat: whether append html base format
+    /// - Parameter delegate: height of webView observer
     public func setupHtmlString(_ htmlString: String?, appendingHtmlFormat: Bool = false) {
         if appendingHtmlFormat, let htmlString = htmlString {
-            // 和计算高度有关
+            // the appending is relate to the height calculate of webView
             let html = """
             <html>
             <head>
@@ -38,11 +38,11 @@ open class WebViewController: UIViewController {
         }
     }
 
-    /// 访问 url
+    /// access url string
     public var urlString: String? {
         didSet {
             guard let urlString = urlString, let url = URL(string: urlString) else {
-                fatalError("URL 为空 ")
+                fatalError("URL can't be nil")
             }
             var request = URLRequest(url: url)
             request.addValue("skey=skeyValue", forHTTPHeaderField: "Cookie")
@@ -50,47 +50,49 @@ open class WebViewController: UIViewController {
         }
     }
 
-    /// html string
+    /// access html string
     public var htmlString: String? {
         didSet {
             guard let htmlString = htmlString else {
-                fatalError("htmlString 为空 ")
+                fatalError("htmlString can't be nil")
             }
             webView.loadHTMLString(htmlString, baseURL: nil)
         }
     }
 
-    /// urlRequest
+    /// access urlRequest
     public var urlRequest: URLRequest? {
         didSet {
             guard let urlRequest = urlRequest else {
-                fatalError("urlRequest 为空 ")
+                fatalError("urlRequest can't be nil")
             }
             webView.load(urlRequest)
         }
     }
 
+    /// whether show progressView of loading
     open var isShowProgressView: Bool {
         return true
     }
 
+    /// whether show title of webView content
     open var isShowTitle: Bool {
         return true
     }
 
-    /// 进度条底色
+    /// progressView's tintColor
     public var progressTintColor: UIColor = WebViewConfig.progressTintColor
-    /// 进度条颜色
+    /// progressView's track tintColor
     public var progressTrackTintColor: UIColor = WebViewConfig.progressTrackTintColor
-    /// 弹窗确定按钮的文字，默认 "OK"，可在 WebViewConfig.alertConfirmTitle 设置
+    /// alert confirm title of runJavaScriptAlertPanelWithMessage, default is  "OK"，can setup at WebViewConfig.alertConfirmTitle
     public var alertConfirmTitle: String = WebViewConfig.alertConfirmTitle
-    /// 弹窗取消按钮的文字，默认 "Cancel"，可在 WebViewConfig.alertCancelTitle 设置
+    /// alert confirm title of runJavaScriptAlertPanelWithMessage, default is  "Cancel"，can setup at WebViewConfig.alertCancelTitle
     public var alertCancelTitle: String = WebViewConfig.alertCancelTitle
 
-    /// WKWebView
     public lazy private(set) var webView: WKWebView = {
         let userContentController = WKUserContentController()
-        let cookieScript = WKUserScript(source: "document.cookie = 'skey=skeyValue';", injectionTime: .atDocumentStart, forMainFrameOnly: false)
+        let cookieScript = WKUserScript(source: "document.cookie = 'skey=skeyValue';",
+                                        injectionTime: .atDocumentStart, forMainFrameOnly: false)
         userContentController.addUserScript(cookieScript)
 
         let configuration = WKWebViewConfiguration()
@@ -108,8 +110,7 @@ open class WebViewController: UIViewController {
         return webView
     }()
 
-    /// 进度条
-    lazy var progressView: UIProgressView = {
+    public lazy private(set) var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.trackTintColor = progressTrackTintColor
         progressView.tintColor = progressTintColor
@@ -128,17 +129,16 @@ open class WebViewController: UIViewController {
 
     override open func viewDidLoad() {
         super.viewDidLoad()
-        if isShowProgressView {
-            view.addSubview(progressView)
-        }
-        view.addSubview(webView)
+        addObservers()
+        setupUI()
     }
 
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if isShowProgressView {
-            progressView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 2)
-            webView.frame = CGRect(x: 0, y: 2, width: view.bounds.width, height: view.bounds.height - 2)
+            let progressViewHeight: CGFloat = 2
+            progressView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: progressViewHeight)
+            webView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         } else {
             webView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         }
@@ -147,7 +147,16 @@ open class WebViewController: UIViewController {
 
 // MARK: - UI
 private extension WebViewController {
+    func setupUI() {
+        view.addSubview(webView)
+        if isShowProgressView {
+            view.addSubview(progressView)
+        }
+    }
+
     func showProgressView() {
+        let originY = webView.scrollView.autualContentInset.top
+        progressView.frame.origin.y = originY
         progressView.isHidden = false
         progressView.setProgress(Float(webView.estimatedProgress), animated: true)
     }
@@ -160,9 +169,9 @@ private extension WebViewController {
 
 // MARK: - Action
 public extension WebViewController {
-    /// 返回上一页
+    /// back to last page
     ///
-    /// - Parameter completion: 包含是否可以返回上一页的 Bool 值的回调，用于执行 goBack 后根据该状态更新相关按钮的 enable
+    /// - Parameter completion: whether can back to prefix page
     func goBack(completion: BoolBlock? = nil) {
         if webView.canGoBack {
             webView.goBack()
@@ -171,9 +180,9 @@ public extension WebViewController {
         completion?(false)
     }
 
-    /// 前进一页
+    /// go to next oage
     ///
-    /// - Parameter completion: 包含是否可以前进一页的 Bool 值的回调，用于执行 goBack 后根据该状态更新相关按钮的 enable
+    /// - Parameter completion: whether can go to next page
     func goForward(completion: BoolBlock? = nil) {
         if webView.canGoForward {
             webView.goForward()
@@ -182,6 +191,7 @@ public extension WebViewController {
         completion?(false)
     }
 
+    /// reload the webView
     func reload() {
         webView.reload()
     }
@@ -191,18 +201,18 @@ public extension WebViewController {
 private extension WebViewController {
     func addObservers() {
         loadingObservation = webView.observe(\WKWebView.isLoading) { [weak self] (_, _) in
-            guard let strongSelf = self else { return }
-            if !strongSelf.webView.isLoading {
-                strongSelf.hideProgressView()
+            guard let self = self else { return }
+            if !self.webView.isLoading {
+                self.hideProgressView()
             }
         }
         titleObservation = webView.observe(\WKWebView.title) { [weak self] (webView, _) in
-            guard let strongSelf = self, strongSelf.isShowTitle else { return }
-            strongSelf.title = strongSelf.webView.title
+            guard let self = self, self.isShowTitle else { return }
+            self.title = self.webView.title
         }
         progressObservation = webView.observe(\WKWebView.estimatedProgress) { [weak self] (_, _) in
-            guard let strongSelf = self else { return }
-            strongSelf.showProgressView()
+            guard let self = self else { return }
+            self.showProgressView()
         }
     }
 }
@@ -260,6 +270,7 @@ extension WebViewController: WKNavigationDelegate {
 }
 
 public extension UIViewController {
+    // convenient method: push to WebViewController, and loading url
     func pushToWebByLoadingURL(_ url: String, title: String? = nil) {
         let webViewController = WebViewController()
         webViewController.title = title
@@ -267,6 +278,7 @@ public extension UIViewController {
         navigationController?.pushViewController(webViewController, animated: true)
     }
 
+    // convenient method: push to WebViewController, and loading html string
     func pushToWebByHTMLString(_ html: String, title: String? = nil) {
         let webViewController = WebViewController()
         webViewController.title = title

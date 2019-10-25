@@ -25,24 +25,23 @@ public class WebViewCell: UITableViewCell {
         webView.navigationDelegate = self
         return webView
     }()
-
+    
     private var webViewHeight: CGFloat = 0
     private var observation: NSKeyValueObservation?
-    private var hasLoad: Bool = false
     private weak var delegate: WebViewCellDelegate?
     private var htmlString: String?
     private var urlString: String?
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
     }
-
+    
     public override func layoutSubviews() {
         super.layoutSubviews()
         webView.frame = bounds
@@ -50,11 +49,11 @@ public class WebViewCell: UITableViewCell {
 }
 
 public extension WebViewCell {
-    /// 加载 html 字符串
-    /// - Parameter htmlString: html 字符串
-    /// - Parameter appendingHtmlFormat: 是否拼接上 htlm 的基本格式
-    /// - Parameter delegate: 代理，监听网页高度
-    /// - Parameter isAddObservers: 是否监听 scrollView.contentSize
+    /// loading html text
+    /// - Parameter htmlString: html text
+    /// - Parameter appendingHtmlFormat: whether append html base format
+    /// - Parameter delegate: height of webView observer
+    /// - Parameter isAddObservers: whether observer scrollView.contentSize , sometimes don't need to add observer of contentSize, sometimes need, depend the url
     func setupHtmlString(_ htmlString: String?,
                          appendingHtmlFormat: Bool = false,
                          delegate: WebViewCellDelegate?,
@@ -82,7 +81,6 @@ public extension WebViewCell {
         } else {
             self.htmlString = htmlString
         }
-        if hasLoad { return }
         let basePath = Bundle.main.bundlePath
         let baseURL = NSURL.fileURL(withPath: basePath)
         DispatchQueue.main.async {
@@ -91,32 +89,29 @@ public extension WebViewCell {
         if isAddObservers {
             addObservers()
         }
-        hasLoad = true
     }
-
-    /// 加载 url
-    /// - Parameter urlString: url 字符串
-    /// - Parameter delegate: 代理，监听网页高度
-    /// - Parameter isAddObservers: 是否监听 scrollView.contentSize （默认通过 document.body.scrollHeight 获取可能不对，例如 url 是异步调 API 再渲染的）
+    
+    /// loading url string
+    /// - Parameter urlString: url string
+    /// - Parameter delegate: webView height obsever delegate
+    /// - Parameter isAddObservers: whether observer scrollView.contentSize , sometimes don't need to add observer of contentSize, sometimes need, depend the url
     func setupURLString(_ urlString: String?,
                         delegate: WebViewCellDelegate?,
                         isAddObservers: Bool = false) {
         guard let urlString = urlString, let url = URL(string: urlString) else { return }
         self.delegate = delegate
         self.urlString = urlString
-        if hasLoad { return }
         DispatchQueue.main.async {
             self.webView.load(URLRequest(url: url))
         }
         if isAddObservers {
             addObservers()
         }
-        hasLoad = true
     }
 }
 
 public extension UITableView {
-    /// 处理 ios10 webview 白屏 scrollViewDidScroll 中调用
+    /// fix ios10 webview rendering issue, called in scrollViewDidScroll
     /// https://stackoverflow.com/questions/39549103/wkwebview-not-rendering-correctly-in-ios-10
     func fixWebViewCellRenderingWhite() {
         if #available(iOS 11.0, *) { return }
@@ -132,17 +127,17 @@ private extension WebViewCell {
     func setupUI() {
         contentView.addSubview(webView)
     }
-
+    
     func addObservers() {
         // 如果 html 正确的话，例如有添加了<meta>，document.body.scrollHeight 获取的高度是正确的，
         // 不需要 addObservers，而且发现 iOS12 以上，使用这个方法高度反而会异常（在添加了<meta>之后）
         observation = webView.observe(\WKWebView.scrollView.contentSize) { [weak self] (_, _) in
-            guard let strongSelf = self else { return }
-            let height = strongSelf.webView.scrollView.contentSize.height
-            strongSelf.contentSizeChange(height: height)
+            guard let self = self else { return }
+            let height = self.webView.scrollView.contentSize.height
+            self.contentSizeChange(height: height)
         }
     }
-
+    
     func contentSizeChange(height: CGFloat) {
         if webViewHeight == height { return }
         delegate?.heightChangeObserve(in: self, contentHeight: height)
@@ -154,8 +149,8 @@ private extension WebViewCell {
 extension WebViewCell: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webView.evaluateJavaScript("document.body.scrollHeight") { [weak self] (result, _) in
-            guard let strongSelf = self, let result = result as? Double else { return }
-            strongSelf.contentSizeChange(height: CGFloat(result))
+            guard let self = self, let result = result as? Double else { return }
+            self.contentSizeChange(height: CGFloat(result))
         }
     }
 }

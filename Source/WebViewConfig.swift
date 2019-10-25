@@ -20,5 +20,5 @@ public struct WebViewConfig {
     /// 进度条完成部分进度的颜色(默认蓝)
     public static var progressTintColor: UIColor = UIColor.blue
     /// 进度条总进度的颜色
-    public static var progressTrackTintColor: UIColor = .white
+    public static var progressTrackTintColor: UIColor = .lightGray
 }

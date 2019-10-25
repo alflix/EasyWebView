@@ -63,9 +63,17 @@ extension NSObject {
         return objc_getAssociatedObject(self, key)
     }
 
-
     func convertUnsafePointerToSwiftType<T>(_ value: UnsafeRawPointer) -> T {
         return value.assumingMemoryBound(to: T.self).pointee
     }
 }
 
+public extension UIScrollView {
+    var autualContentInset: UIEdgeInsets {
+        if #available(iOS 11.0, *) {
+            return adjustedContentInset
+        } else {
+            return contentInset
+        }
+    }
+}
