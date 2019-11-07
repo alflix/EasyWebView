@@ -25,23 +25,23 @@ public class WebViewCell: UITableViewCell {
         webView.navigationDelegate = self
         return webView
     }()
-    
+
     private var webViewHeight: CGFloat = 0
     private var observation: NSKeyValueObservation?
     private weak var delegate: WebViewCellDelegate?
     private var htmlString: String?
     private var urlString: String?
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
     }
-    
+
     public override func layoutSubviews() {
         super.layoutSubviews()
         webView.frame = bounds
@@ -90,7 +90,7 @@ public extension WebViewCell {
             addObservers()
         }
     }
-    
+
     /// loading url string
     /// - Parameter urlString: url string
     /// - Parameter delegate: webView height obsever delegate
@@ -127,7 +127,7 @@ private extension WebViewCell {
     func setupUI() {
         contentView.addSubview(webView)
     }
-    
+
     func addObservers() {
         // 如果 html 正确的话，例如有添加了<meta>，document.body.scrollHeight 获取的高度是正确的，
         // 不需要 addObservers，而且发现 iOS12 以上，使用这个方法高度反而会异常（在添加了<meta>之后）
@@ -137,7 +137,7 @@ private extension WebViewCell {
             self.contentSizeChange(height: height)
         }
     }
-    
+
     func contentSizeChange(height: CGFloat) {
         if webViewHeight == height { return }
         delegate?.heightChangeObserve(in: self, contentHeight: height)
