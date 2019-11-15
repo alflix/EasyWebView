@@ -32,7 +32,7 @@ platform :ios, '8.0'
 pod "EasyWebView"
 ```
 
-> If you want to load http, Don't forget the Privacy Description in `info.plist`.
+> If you want to load http url, Don't forget the Privacy Description in `info.plist`.
 
 ```xml
 <key>NSAppTransportSecurity</key>
@@ -82,7 +82,8 @@ extension ViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: WebViewCell.self, for: indexPath)
-        cell.setupURLString("http://test", delegate: self, isAddObservers: true)
+        // test url and scriptNames
+        cell.setupURLString("https://test.com", delegate: self, isAddObservers: true)
         cell.webView.addScriptMessageHandler(scriptNames: ["test"]) { (_, message) in
             print("😄: \(message.body)")
         }
@@ -97,7 +98,7 @@ extension ViewController {
 
 ## Author
 
-Does your organization or project use EasyWebView? Please let me know by email. John, jieyuanz24k@gmail.com
+Does your organization or project use EasyWebView? Please let me know by email. John, jieyuanz24@gmail.com .
 
 ## License 
 
