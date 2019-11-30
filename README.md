@@ -1,11 +1,11 @@
-<img src="./Doc/logo.png">
+<img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9giiknm56j30y10hymyd.jpg">
 
 [![Version](https://img.shields.io/cocoapods/v/EasyWebView.svg?style=flat)](http://cocoapods.org/pods/EasyWebView)
 [![License](https://img.shields.io/cocoapods/l/EasyWebView.svg?style=flat)](http://cocoapods.org/pods/EasyWebView)
 [![Platform](https://img.shields.io/cocoapods/p/EasyWebView.svg?style=flat)](http://cocoapods.org/pods/EasyWebView)
 ![Swift](https://img.shields.io/badge/%20in-swift%205.0-orange.svg)
 
-## Written in Swift 5.1
+## Introduction
 
 EasyWebView enables application to use WKWebView easily, in UIViewController or UITableViewCell.
 
