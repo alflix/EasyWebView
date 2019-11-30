@@ -3,7 +3,7 @@
 //  EasyWebView
 //
 //  Created by John on 2019/10/18.
-//  Copyright © 2019 John. All rights reserved.
+//  Copyright © 2019 EasyWebView. All rights reserved.
 //
 
 import UIKit
