@@ -20,15 +20,15 @@ EasyWebView enables application to use WKWebView easily, in UIViewController or 
 
 ### Requirements 
 
-- Swift 4.2 ( Swift 4.2 -> use 'version 1.0.0' )
-- iOS 8.0 (for use WKWebView)
+- Swift 4.2 
+- iOS 9.0
 
 ### Cocoapods
 
 EasyWebView is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-platform :ios, '8.0'
+platform :ios, '9.0'
 pod "EasyWebView"
 ```
 
