@@ -1,4 +1,4 @@
-<img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9giiknm56j30y10hymyd.jpg">
+<img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9uyopblfsj310g082jrw.jpg">
 
 [![Version](https://img.shields.io/cocoapods/v/EasyWebView.svg?style=flat)](http://cocoapods.org/pods/EasyWebView)
 [![License](https://img.shields.io/cocoapods/l/EasyWebView.svg?style=flat)](http://cocoapods.org/pods/EasyWebView)
