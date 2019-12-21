@@ -24,7 +24,7 @@ class WeakScriptMessageDelegate: NSObject, WKScriptMessageHandler {
 
 public extension WKWebView {
     fileprivate struct AssociatedKey {
-        static var receiveScriptMessageHandlerWrapper: String = "com.John.receiveScriptMessageHandler"
+        static var receiveScriptMessageHandlerWrapper: String = "com.EasyWebView.receiveScriptMessageHandler"
     }
 
     private var receiveScriptMessageHandler: ReceiveScriptMessageBlock? {
@@ -40,7 +40,7 @@ public extension WKWebView {
     }
 
     /// js 用以下的方法调用 iOS 的函数：
-    /// window.webkit.messageHandlers. {scriptNames}.postMessage(xxx)
+    /// window.webkit.messageHandlers. {scriptName}.postMessage(object)
     /// - Parameter scriptNames: 函数名称数组
     /// - Parameter receiveScriptMessageHandler: 回调
     func addScriptMessageHandler(scriptNames: [String], receiveScriptMessageHandler: ReceiveScriptMessageBlock? = nil) {

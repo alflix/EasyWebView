@@ -23,6 +23,7 @@ open class WebViewController: UIViewController {
             <meta name="viewport", content="width=\(view.bounds.width), initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no\">
             <style>
             body { font-size: 100%; text-align: justify;}
+            span { line-height:normal !important }
             p { margin: 0; padding: 0;}
             img { max-width:100%; width: 100%; height:auto; padding:0; border:0; margin:0; vertical-align:bottom;}
             </style>
@@ -260,11 +261,13 @@ extension WebViewController: WKUIDelegate {
 }
 
 extension WebViewController: WKNavigationDelegate {
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse,
+                        decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         decisionHandler(.allow)
     }
 
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
+                        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         decisionHandler(.allow)
     }
 }

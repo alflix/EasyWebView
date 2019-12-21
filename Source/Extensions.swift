@@ -68,7 +68,7 @@ extension NSObject {
     }
 }
 
-public extension UIScrollView {
+extension UIScrollView {
     var autualContentInset: UIEdgeInsets {
         if #available(iOS 11.0, *) {
             return adjustedContentInset
