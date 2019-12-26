@@ -10,6 +10,10 @@ import UIKit
 import WebKit
 
 public protocol WebViewCellDelegate: NSObjectProtocol {
+    /// invoke when webView height change, use `tableView.beginUpdates(), tableView.endUpdates()` to reload cell height
+    /// - Parameters:
+    ///   - cell: the WebViewCell
+    ///   - contentHeight: height of WebViewCell
     func heightChangeObserve(in cell: UITableViewCell, contentHeight: CGFloat)
 }
 
