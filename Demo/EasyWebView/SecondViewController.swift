@@ -16,7 +16,7 @@ class SecondViewController: WebViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.bringSubviewToFront(toolView)
-        urlString = "https://github.com/alflix/EasyWebView/blob/master/README.md"
+        urlString = "http://mdetail.tmall.com/templates/pages/desc?id=604372762402"
     }
 
     @IBAction func back(_ sender: Any) {
