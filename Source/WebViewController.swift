@@ -14,26 +14,9 @@ open class WebViewController: UIViewController {
     /// - Parameter htmlString: html string
     /// - Parameter appendingHtmlFormat: whether append html base format
     /// - Parameter delegate: height of webView observer
-    public func setupHtmlString(_ htmlString: String?, appendingHtmlFormat: Bool = false) {
-        if appendingHtmlFormat, let htmlString = htmlString {
-            // the appending is relate to the height calculate of webView
-            let html = """
-            <html>
-            <head>
-            <meta name="viewport", content="width=\(view.bounds.width), initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no\">
-            <style>
-            body { font-size: 100%; text-align: justify;}
-            span { line-height:normal !important }
-            p { margin: 0; padding: 0;}
-            img { max-width:100%; width: 100%; height:auto; padding:0; border:0; margin:0; vertical-align:bottom;}
-            </style>
-            </head>
-            <body>
-            \(htmlString)
-            </body>
-            </html>
-            """
-            self.htmlString = html
+    public func setupHtmlString(_ htmlString: String, appendingHtmlFormat: Bool = false) {
+        if appendingHtmlFormat {
+            self.htmlString = htmlString.appendingHtmlFormat(contentWidth: view.bounds.width)
         } else {
             self.htmlString = htmlString
         }

@@ -57,31 +57,14 @@ public extension WebViewCell {
     /// - Parameter htmlString: html text
     /// - Parameter appendingHtmlFormat: whether append html base format
     /// - Parameter delegate: height of webView observer
-    /// - Parameter isAddObservers: whether observer scrollView.contentSize , sometimes don't need to add observer of contentSize, sometimes need, depend the url
     func setupHtmlString(_ htmlString: String?,
                          appendingHtmlFormat: Bool = false,
-                         delegate: WebViewCellDelegate?,
-                         isAddObservers: Bool = false) {
+                         delegate: WebViewCellDelegate?) {
         guard let htmlString = htmlString else { return }
         self.delegate = delegate
         if appendingHtmlFormat {
             // 和计算高度有关
-            let html = """
-            <html>
-            <head>
-            <meta name="viewport", content="width=\(bounds.width), initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no\">
-            <style>
-            body { font-size: 100%; text-align: justify;}
-            table { width: 100% !important;}
-            img { max-width:100%; width: 100%; height:auto; padding:0; border:0; margin:0; vertical-align:bottom;}
-            </style>
-            </head>
-            <body>
-            \(htmlString)
-            </body>
-            </html>
-            """
-            self.htmlString = html
+            self.htmlString = htmlString.appendingHtmlFormat(contentWidth: bounds.width)
         } else {
             self.htmlString = htmlString
         }
@@ -90,18 +73,16 @@ public extension WebViewCell {
         DispatchQueue.main.async {
             self.webView.loadHTMLString(self.htmlString!, baseURL: baseURL)
         }
-        if isAddObservers {
-            addObservers()
-        }
     }
 
     /// loading url string
     /// - Parameter urlString: url string
     /// - Parameter delegate: webView height obsever delegate
-    /// - Parameter isAddObservers: whether observer scrollView.contentSize , sometimes don't need to add observer of contentSize, sometimes need, depend the url
+    /// - Parameter isAddObservers: whether observer scrollView.contentSize , default is true.
+    /// sometimes don't need to add observer of contentSize, sometimes need, depend the url may load request manty times
     func setupURLString(_ urlString: String?,
                         delegate: WebViewCellDelegate?,
-                        isAddObservers: Bool = false) {
+                        isAddObservers: Bool = true) {
         guard let urlString = urlString, let url = URL(string: urlString) else { return }
         self.delegate = delegate
         self.urlString = urlString
@@ -133,8 +114,7 @@ private extension WebViewCell {
     }
 
     func addObservers() {
-        // 如果 html 正确的话，例如有添加了<meta>，document.body.scrollHeight 获取的高度是正确的，
-        // 不需要 addObservers，而且发现 iOS12 以上，使用这个方法高度反而会异常（在添加了<meta>之后）
+        // 使用 html 加载不需要，使用 url 的话通常需要
         observation = webView.observe(\WKWebView.scrollView.contentSize) { [weak self] (_, _) in
             guard let self = self else { return }
             let height = self.webView.scrollView.contentSize.height

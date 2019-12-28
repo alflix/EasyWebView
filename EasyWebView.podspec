@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = 'EasyWebView'
-  s.version               = '1.0.1'
+  s.version               = '1.0.2'
   s.summary               = 'use WKWebView easily!'
 
   s.homepage              = 'https://github.com/alflix/EasyWebView'
